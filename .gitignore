@@ -1,0 +1,4 @@
+mysql
+nginx
+php-fpm
+docker-compose.yml
