@@ -16,7 +16,15 @@ class ArticleController extends Controller
     {
         //
         $articles = Article::all();
+        // return $articles;
         return view('article/index',['articles' => $articles]);
+    }
+    public function getArticle()
+    {
+        //
+        $articles = Article::all();
+        return $articles;
+        // return view('article/index',['articles' => $articles]);
     }
 
     /**
