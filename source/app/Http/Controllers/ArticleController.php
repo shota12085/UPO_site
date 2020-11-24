@@ -27,12 +27,21 @@ class ArticleController extends Controller
         return $articles;
     }
 
-    public function addArticle()
+    public function addArticle(Request $request)
     {   
         $article = new Article;
         $article->title = $request->title;
         $article->content = $request->content;
         $article->save();
+        $articles = Article::all();
+        return $articles;
+    }
+
+    public function deleteArticle(Request $request)
+    {   
+        $article = Article::find($request->id);
+        $article->delete();
+        
         $articles = Article::all();
         return $articles;
     }
