@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+// use App\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -15,23 +16,27 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $articles = Article::all();
-        // return $articles;
-        return view('article/index',['articles' => $articles]);
-    }
-    public function getArticle()
-    {
-        //
-        $articles = Article::all();
-        return $articles;
+        // $articles = Article::all();
+        return view('article/index');
         // return view('article/index',['articles' => $articles]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getArticle()
+    {
+        $articles = Article::all();
+        return $articles;
+    }
+
+    public function addArticle()
+    {   
+        $article = new Article;
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->save();
+        $articles = Article::all();
+        return $articles;
+    }
+
     public function create()
     {
         //

@@ -17,7 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('article','articleController');
+
 Route::group(['middleware' => 'api'], function(){
     Route::get('get', 'articleController@getArticle');
+    Route::post('add', 'articleController@addArticle');
 });
