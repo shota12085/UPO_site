@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'api'], function(){
     Route::get('get', 'articleController@getArticle');
     Route::post('add', 'articleController@addArticle');
+    Route::post('del', 'articleController@deleteArticle');
 });
