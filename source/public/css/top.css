@@ -1,0 +1,65 @@
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.calendar-table th,
+.calendar-table td{
+  border: 1px solid #ebeced;
+  padding: 10px;
+}
+
+.calendar-table .header {
+  background-color: #4c586f;
+  color: #fff;
+  font-size: 12px;
+  text-align: left;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.month a {
+  color: #4a80d6;
+}
+
+.left-space{
+  padding-right: 10px;
+}
+
+.right {
+  padding-left: 10px;
+}
+
+.day {
+    height: 40px;
+    padding: 0 0 0 3px!important;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+}
+
+.first {
+  height: 400px;
+  display: flex;
+  padding: 10px 20px;
+}
+.first .image {
+  width: 70%;
+}
+.first .image .image-size{
+  height: 100%;
+  width: 100%;
+  padding-right: 20px;
+}
+.first .calendar {
+  width: 30%;
+}
