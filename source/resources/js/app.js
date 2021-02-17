@@ -5,7 +5,8 @@
  */
 
 require('./bootstrap');
-require('./components/Article');
+// require('./components/Article');
+require('./components/Top');
 
 /**
  * Next, we will create a fresh React component instance and attach it to

@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top/index');
 });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::resource('article','articleController');
