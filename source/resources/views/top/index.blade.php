@@ -108,21 +108,23 @@
     </div>
 
   </div>
-  <div class="second" style="display:flex">
-    <div class="second-left">
-      <h5>レストラン（喫茶）</h5>
-      <p>営業時間</p>
-      <p>10:00 ~ 15:00</p>
-      <p>定休日  水曜日</p>
-    </div>
-    <div class="second-center">
-      <h5>メニュー</h5>
-    </div>
-    <div>
-      <h5>お知らせ</h5>
-      <div class="news-list">
-        
-        <div id="news"></div>
+  <div class="second container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <h5>レストラン（喫茶）</h5>
+        <p>営業時間</p>
+        <p>10:00 ~ 15:00</p>
+        <p>定休日  水曜日</p>
+      </div>
+      <div class="col-sm-4">
+        <h5>メニュー</h5>
+      </div>
+      <div class="col-sm-4">
+        <h5>お知らせ</h5>
+        <div class="news-list">
+          
+          <div id="news"></div>
+        </div>
       </div>
     </div>
   </div>
