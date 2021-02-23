@@ -47,19 +47,17 @@
   width: 100vw;
 }
 
-.first {
+/* .first {
   height: 400px;
   display: flex;
   padding: 10px 20px;
 }
 .first .image {
   width: 70%;
-}
+}*/
 .first .image .image-size{
-  height: 100%;
   width: 100%;
-  padding-right: 20px;
 }
-.first .calendar {
+/*.first .calendar {
   width: 30%;
-}
+} */

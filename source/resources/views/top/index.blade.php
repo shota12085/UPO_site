@@ -97,18 +97,20 @@
   }
 ?>
 
-<div class="main">
+<div class="main container-fluid">
   <div class="first">
-    <div class="image">
-      <img class="image-size" src="https://upv.jp/wp/wp-content/uploads/2018/03/sora_main.jpg" alt="写真">
-    </div>  
-    <div class="calendar">
-      <h4>空室カレンダー</h3>
-      <?php echo renderCalendar($dt); ?>
+    <div class="row">
+      <div class="col-sm-8 image">
+        <img class="image-size" src="https://upv.jp/wp/wp-content/uploads/2018/03/sora_main.jpg" alt="写真">
+      </div>  
+      <div class="col-sm-4 calendar">
+        <h4>空室カレンダー</h3>
+        <?php echo renderCalendar($dt); ?>
+      </div>
     </div>
 
   </div>
-  <div class="second container-fluid">
+  <div class="second">
     <div class="row">
       <div class="col-sm-4">
         <h5>レストラン（喫茶）</h5>
@@ -120,11 +122,17 @@
         <h5>メニュー</h5>
       </div>
       <div class="col-sm-4">
-        <h5>お知らせ</h5>
-        <div class="news-list">
+        <h5>UPO News</h5>
+        <!-- <table class="news-list" id="news-datatables">
+          <tr>
+            <th>日付</th>
+            <th>お知らせ</th>
+          </tr>
+        </table> -->
+        <!-- <div class="news-list"> -->
           
           <div id="news"></div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
