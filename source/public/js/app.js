@@ -89609,18 +89609,17 @@ module.exports = function(module) {
  * includes React and other helpers. It's a great starting point while
  * building robust, powerful web applications using React + Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // require('./components/Article');
-
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Top */ "./resources/js/components/Top.js");
+
+__webpack_require__(/*! ./components/Article */ "./resources/js/components/Article.js");
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
+// require('./components/Example');
 
 /***/ }),
 
@@ -89669,16 +89668,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Example.js":
+/***/ "./resources/js/components/Article.js":
 /*!********************************************!*\
-  !*** ./resources/js/components/Example.js ***!
+  !*** ./resources/js/components/Article.js ***!
   \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Example; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Article; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -89708,44 +89707,166 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Example = /*#__PURE__*/function (_Component) {
-  _inherits(Example, _Component);
+function RenderRows(props) {
+  return props.articles.map(function (article) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: article.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, article.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, article.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, article.content), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "btn btn-secondary",
+      onClick: function onClick() {
+        return props.deleteArticle(article);
+      }
+    }, "\u5B8C\u4E86")));
+  });
+}
 
-  var _super = _createSuper(Example);
+var Article = /*#__PURE__*/function (_Component) {
+  _inherits(Article, _Component);
 
-  function Example() {
-    _classCallCheck(this, Example);
+  var _super = _createSuper(Article);
 
-    return _super.apply(this, arguments);
+  function Article() {
+    var _this;
+
+    _classCallCheck(this, Article);
+
+    _this = _super.call(this);
+    _this.state = {
+      articles: [],
+      article_title: '',
+      article_content: ''
+    };
+    _this.inputChange = _this.inputChange.bind(_assertThisInitialized(_this));
+    _this.addArticle = _this.addArticle.bind(_assertThisInitialized(_this));
+    _this.deleteArticle = _this.deleteArticle.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
-  _createClass(Example, [{
+  _createClass(Article, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios.get('/api/get').then(function (res) {
+        _this2.setState({
+          articles: res.data
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "inputChange",
+    value: function inputChange(event) {
+      switch (event.target.name) {
+        case 'article_title':
+          this.setState({
+            article_title: event.target.value
+          });
+          break;
+
+        case 'article_content':
+          this.setState({
+            article_content: event.target.value
+          });
+          break;
+
+        default:
+          break;
+      }
+    } //登録アクション
+
+  }, {
+    key: "addArticle",
+    value: function addArticle() {
+      var _this3 = this;
+
+      //空だとreturn
+      if (this.state.article_title == '' && this.state.article_content == '') {
+        return;
+      }
+
+      $.ajax({
+        url: '/api/add',
+        type: 'POST',
+        data: {
+          title: this.state.article_title,
+          content: this.state.article_content
+        },
+        timeout: 3000
+      }).then(function (data) {
+        //戻り値をセット
+        _this3.setState({
+          articles: data,
+          article_title: '',
+          article_content: ''
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } //削除
+
+  }, {
+    key: "deleteArticle",
+    value: function deleteArticle(article) {
+      var _this4 = this;
+
+      $.ajax({
+        url: '/api/del',
+        type: 'POST',
+        data: {
+          id: article.id
+        },
+        timeout: 3000
+      }).then(function (data) {
+        _this4.setState({
+          articles: data
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-8"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Example Component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, "I'm an example component!")))));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group mt-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "article_title"
+      }, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        name: "article_title",
+        value: this.state.article_title,
+        onChange: this.inputChange
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "article_content"
+      }, "\u8A18\u4E8B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        style: {
+          height: "300px"
+        },
+        name: "article_content",
+        value: this.state.article_content,
+        onChange: this.inputChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        onClick: this.addArticle
+      }, "\u767B\u9332"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        className: "table mt-5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u65E5\u4ED8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30BF\u30A4\u30C8\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u5185\u5BB9"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RenderRows, {
+        articles: this.state.articles,
+        deleteArticle: this.deleteArticle
+      }))));
     }
   }]);
 
-  return Example;
+  return Article;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
-
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('example'));
-}
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Article, null), document.getElementById('article'));
 
 /***/ }),
 
