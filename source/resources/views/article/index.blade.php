@@ -6,6 +6,6 @@
 
     <div id="article"></div>
 </div>
-<script src="{{ asset('js/app.js')}}"></script>
+<script src="{{ asset('js/article.js')}}"></script>
 
 @endsection

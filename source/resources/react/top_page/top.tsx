@@ -1,5 +1,5 @@
-// import React, { Component } from 'react';
-import React from 'react';
+import React, { Component } from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -9,40 +9,54 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import TableFooter from '@material-ui/core/TableFooter';
+// import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
+// import { NewReleasesSharp } from '@material-ui/icons';
+import axios from 'axios';
 
-class Top extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      news: [],
-    };
-  }
-
-  componentDidMount(){
-    $.ajax({
-      type: "GET",
-      url: '/api/get'
-    })
-    .then((res) => {
-        this.setState({
-            news: res
-        });
-    })
-    .catch(error => {
-        console.log(error)
-    })
-  }
-  render(){
-    return (
-      <React.Fragment>
-          <CustomizedTables news={this.state.news}/>
-      </React.Fragment>
-    );
-  }
+interface jsonType {
+  data:string,
 }
+const url = '/api/get';
 
+class Top extends React.Component <{}, { news: any }> {
+  
+  constructor(props){
+    super(props);
+    this.state = {news: []};
+    this.articleNews(url);
+  }
+
+  async articleNews(URL){
+    let return_Json:jsonType[] = [];
+
+    axios
+        .get<jsonType[]>(URL)
+        .then((results) => {
+            return_Json = results.data;
+            this.setState({news: return_Json})
+            // 成功したら取得できたデータを返す
+            return return_Json;
+        })
+        .catch((error) => {
+            console.log('通信失敗');
+            console.log(error.status);
+            // 失敗したときは空のjsonを返す
+        });
+  }
+  
+  render(){
+    if (this.state.news.length > 0) {
+        return (
+          <React.Fragment>
+              <CustomizedTables news = {this.state.news}/>
+          </React.Fragment>
+        );
+    }
+    return <div>Loading...</div>;
+  }
+
+}
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -134,5 +148,6 @@ function CustomizedTables(props) {
     ) 
   }
 }
-
-ReactDOM.render(<Top />, document.getElementById('news'));
+if (document.getElementById('news')) {
+  ReactDOM.render(<Top />, document.getElementById('news'));
+}

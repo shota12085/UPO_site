@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",                         
+    "module": "commonjs",                    
+    "noImplicitAny": false,
+    "jsx": "react",        
+    "strict": true,        
+    "esModuleInterop": true, 
+    "skipLibCheck": true,                     
+    "forceConsistentCasingInFileNames": true  
+  },
+  "exclude": [
+    "node_modules",
+    "vendor"
+  ],
+  "include": [
+    "resources/react/*/*"
+, "resources/react/top_page/top.tsx"  ]
+}

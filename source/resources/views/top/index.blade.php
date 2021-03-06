@@ -123,19 +123,10 @@
       </div>
       <div class="col-sm-4">
         <h5>UPO News</h5>
-        <!-- <table class="news-list" id="news-datatables">
-          <tr>
-            <th>日付</th>
-            <th>お知らせ</th>
-          </tr>
-        </table> -->
-        <!-- <div class="news-list"> -->
-          
           <div id="news"></div>
-        <!-- </div> -->
       </div>
     </div>
   </div>
-  <script src="{{ asset('js/app.js')}}"></script>
+  <script src="{{ asset('js/top.js') }}" defer></script>
 </div>
 @endsection

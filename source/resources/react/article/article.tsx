@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 function RenderRows(props){
+    console.log(props);
     return props.articles.map(article => {
         return (
             <tr key={article.id}>
@@ -14,9 +16,9 @@ function RenderRows(props){
     });
 }
 
-export default class Article extends Component {
-    constructor(){
-        super();
+export default class Article extends Component <{}, { articles: any, article_title: string, article_content: string }>{
+    constructor(props){
+        super(props);
         this.state = {
             articles: [],
             article_title: '',
@@ -65,15 +67,15 @@ export default class Article extends Component {
             return;
         }
 
-        $.ajax({
-            url: '/api/add',
-            type:'POST',
-            data : {title: this.state.article_title, content: this.state.article_content },
-            timeout:3000,
-        }).then((data) => {
+        axios
+        .post(
+            '/api/add',
+            {title: this.state.article_title, content: this.state.article_content },
+        ).then((res) => {
             //戻り値をセット
+
             this.setState({
-                articles: data,
+                articles: res.data,
                 article_title: '',
                 article_content: ''
             });
@@ -84,14 +86,13 @@ export default class Article extends Component {
     
     //削除
     deleteArticle(article){
-        $.ajax({
-            url: '/api/del',
-            type:'POST',
-            data : {id: article.id},
-            timeout:3000,
-        }).then((data) => {
+        axios
+        .post(
+            '/api/del',
+            {id: article.id},
+        ).then((res) => {
             this.setState({
-                articles: data,
+                articles: res.data,
             });
         }).catch(error => {
             console.log(error);
@@ -128,5 +129,9 @@ export default class Article extends Component {
         );
     }
 }
+ 
+if (document.getElementById('article')) {
+    ReactDOM.render(<Article />, document.getElementById('article'));
+}
 
-ReactDOM.render(<Article />, document.getElementById('article'));
+// ReactDOM.render(<Article />, document.getElementById('article'));
