@@ -4,9 +4,9 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
-require('./bootstrap');
-require('./components/Top');
-require('./components/Article');
+// require('../../public/js/bootstrap');
+require('./top_page/top');
+require('./article/article');
 
 /**
  * Next, we will create a fresh React component instance and attach it to
