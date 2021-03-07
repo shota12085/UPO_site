@@ -14,6 +14,7 @@
     </script>
     <script>src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"</script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <script src="https://cdn.tiny.cloud/1/knqebfuvi01whiwmy6l7dugrshe93drp930cek8it5l3ghhn/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <title>upo_site</title>
   </head>
   <body>

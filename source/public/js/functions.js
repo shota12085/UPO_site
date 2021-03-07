@@ -81,32 +81,43 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/react/module/articleApi.tsx":
-/*!***********************************************!*\
-  !*** ./resources/react/module/articleApi.tsx ***!
-  \***********************************************/
+/***/ "./resources/react/module/functions.tsx":
+/*!**********************************************!*\
+  !*** ./resources/react/module/functions.tsx ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.htmlspecialchars = void 0;
+// エスケープ関数
+function htmlspecialchars(str) {
+    return (str + '').replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+exports.htmlspecialchars = htmlspecialchars;
 
 
 /***/ }),
 
-/***/ 2:
-/*!*****************************************************!*\
-  !*** multi ./resources/react/module/articleApi.tsx ***!
-  \*****************************************************/
+/***/ 3:
+/*!****************************************************!*\
+  !*** multi ./resources/react/module/functions.tsx ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/react/module/articleApi.tsx */"./resources/react/module/articleApi.tsx");
+module.exports = __webpack_require__(/*! /var/www/html/resources/react/module/functions.tsx */"./resources/react/module/functions.tsx");
 
 
 /***/ })

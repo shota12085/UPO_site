@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import LeftSide from '../layout/left_side';
+import { Editor } from '@tinymce/tinymce-react';
+import * as UPO from '../module/functions';
 
 function RenderRows(props){
-    console.log(props);
     return props.articles.map(article => {
         return (
             <tr key={article.id}>
@@ -66,7 +68,6 @@ export default class Article extends Component <{}, { articles: any, article_tit
         if(this.state.article_title == '' && this.state.article_content == ''){
             return;
         }
-
         axios
         .post(
             '/api/add',
@@ -99,32 +100,68 @@ export default class Article extends Component <{}, { articles: any, article_tit
         });
     }
 
+    handleEditorChange = (e) => {
+        this.setState({
+            article_content: e.target.getContent()
+        });
+      }
+
     render() {
         return (
             <React.Fragment>
-                <div className="form-group mt-4">
-                   <label htmlFor="article_title">タイトル</label>
-                   <input type="text" className="form-control" name="article_title" value={this.state.article_title} onChange={this.inputChange}/>
-                   <label htmlFor="article_content">記事</label>
-                   <input type="text" className="form-control" style={{height:"300px"}} name="article_content" value={this.state.article_content} onChange={this.inputChange}/>
-                </div>
-                <button className="btn btn-primary" onClick={this.addArticle}>登録</button>
-                
-                <table className="table mt-5">
-                    <thead>
-                        <tr>
-                            <th>日付</th>
-                            <th>タイトル</th>
-                            <th>内容</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <RenderRows
-                            articles={this.state.articles}
-                            deleteArticle={this.deleteArticle}
+                <div className="row">
+                    <div className="col-sm-3" style={{background:"#fff"}}>
+                        <LeftSide />
+                    </div>
+                    <div className="col-sm-9">
+                        <h3 className="mt-5">ニュース一覧</h3>
+                        <div className="form-group mt-4">
+                        <label htmlFor="article_title">タイトル</label>
+                        <input type="text" className="form-control" name="article_title" value={this.state.article_title} onChange={this.inputChange}/>
+                        <label htmlFor="article_content">記事</label>
+                        <Editor
+                            initialValue="ここに記事を書いてください"
+                            init={{
+                                height: 500,
+                                menubar: false,
+                                plugins: [
+                                'advlist autolink lists link image', 
+                                'charmap print preview anchor help',
+                                'searchreplace visualblocks code',
+                                'insertdatetime media table paste wordcount'
+                                ],
+                                toolbar:
+                                'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright | \
+                                bullist numlist outdent indent | help',
+                                force_p_newlines : false,
+                                force_br_newlines : false,
+                                // force_strong_newlines : false,
+                                forced_root_block : '',
+                            }}
+                            onChange={this.handleEditorChange}
                         />
-                    </tbody>
-                </table>
+                        {/* <textarea className="form-control MCE" style={{height:"300px"}} name="article_content" value={this.state.article_content} onChange={this.inputChange}/> */}
+                        </div>
+                        <button className="btn btn-primary" onClick={this.addArticle}>登録</button>
+                        
+                        <table className="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th>日付</th>
+                                    <th>タイトル</th>
+                                    <th>内容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <RenderRows
+                                    articles={this.state.articles}
+                                    deleteArticle={this.deleteArticle}
+                                    />
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </React.Fragment>
         );
     }
@@ -133,5 +170,3 @@ export default class Article extends Component <{}, { articles: any, article_tit
 if (document.getElementById('article')) {
     ReactDOM.render(<Article />, document.getElementById('article'));
 }
-
-// ReactDOM.render(<Article />, document.getElementById('article'));
