@@ -81,30 +81,54 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/react/layout/left_side.tsx":
-/*!**********************************************!*\
-  !*** ./resources/react/layout/left_side.tsx ***!
-  \**********************************************/
+/***/ "./resources/react/admin/admin.tsx":
+/*!*****************************************!*\
+  !*** ./resources/react/admin/admin.tsx ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/ts-loader/index.js):\nError: ENOENT: no such file or directory, open '/var/www/html/resources/react/layout/left_side.tsx'");
+throw new Error("Module build failed (from ./node_modules/ts-loader/index.js):\nError: ENOENT: no such file or directory, open '/var/www/html/resources/react/admin/admin.tsx'");
 
 /***/ }),
 
-/***/ 2:
-/*!****************************************************!*\
-  !*** multi ./resources/react/layout/left_side.tsx ***!
-  \****************************************************/
+/***/ "./resources/sass/_variables.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/_variables.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/*!**********************************************************************************************************!*\
+  !*** multi ./resources/react/admin/admin.tsx ./resources/sass/_variables.scss ./resources/sass/app.scss ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/react/layout/left_side.tsx */"./resources/react/layout/left_side.tsx");
+__webpack_require__(/*! /var/www/html/resources/react/admin/admin.tsx */"./resources/react/admin/admin.tsx");
+__webpack_require__(/*! /var/www/html/resources/sass/_variables.scss */"./resources/sass/_variables.scss");
+module.exports = __webpack_require__(/*! /var/www/html/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
